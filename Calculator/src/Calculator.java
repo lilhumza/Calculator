@@ -16,10 +16,10 @@ public class Calculator extends JFrame  implements ActionListener {
 	ScriptEngine engine;
 	
 	JButton btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9;
-	JButton btnAdd, btnSub, btnCalc, btnClear;
+	JButton btnAdd, btnSub, btnMult, btnDiv, btnCalc, btnClear;
 	JTextArea txtCalc;
 	String calcLine;
-	Integer result = 0;
+	Double result = 0.00;
 	
 
 	public Calculator() {
@@ -124,18 +124,34 @@ public class Calculator extends JFrame  implements ActionListener {
         btnSub.addActionListener(this);
         add(btnSub);
         
+        btnMult = new JButton();
+        btnMult.setText("*");
+        btnMult.setLocation(200, 200);
+        btnMult.setSize(100, 50);
+        btnMult.setActionCommand("MULT");
+        btnMult.addActionListener(this);
+        add(btnMult);
+        
+        btnDiv = new JButton();
+        btnDiv.setText("/");
+        btnDiv.setLocation(300, 200);
+        btnDiv.setSize(100, 50);
+        btnDiv.setActionCommand("DIV");
+        btnDiv.addActionListener(this);
+        add(btnDiv);
+        
         btnCalc = new JButton();
         btnCalc.setText("=");
-        btnCalc.setLocation(200, 200);
-        btnCalc.setSize(100, 50);
+        btnCalc.setLocation(400, 200);
+        btnCalc.setSize(50, 50);
         btnCalc.setActionCommand("CALC");
         btnCalc.addActionListener(this);
         add(btnCalc);
         
         btnClear = new JButton();
-        btnClear.setText("CLEAR");
-        btnClear.setLocation(300, 200);
-        btnClear.setSize(100, 50);
+        btnClear.setText("CE");
+        btnClear.setLocation(450, 200);
+        btnClear.setSize(50, 50);
         btnClear.setActionCommand("CLEAR");
         btnClear.addActionListener(this);
         add(btnClear);
@@ -229,6 +245,18 @@ public class Calculator extends JFrame  implements ActionListener {
 	    	   txtCalc.setText(calcLine);
 	       }
 	       
+	       if(e.getActionCommand().equals("MULT")){
+	    	   calcLine = txtCalc.getText();
+	    	   calcLine += "*";
+	    	   txtCalc.setText(calcLine);
+	       }
+	       
+	       if(e.getActionCommand().equals("DIV")){
+	    	   calcLine = txtCalc.getText();
+	    	   calcLine += "/";
+	    	   txtCalc.setText(calcLine);
+	       }
+	       
 	       if(e.getActionCommand().equals("CALC")){
 	    	   
 	    	   manager = new ScriptEngineManager();
@@ -236,7 +264,7 @@ public class Calculator extends JFrame  implements ActionListener {
 	    	   
 	    	
 	    	   try {
-	    		   result += (int) engine.eval(calcLine);
+	    		   result += (double) engine.eval(calcLine);
 	    	   } catch (ScriptException e1) {
 	    		   // TODO Auto-generated catch block
 	    		   e1.printStackTrace();
@@ -250,7 +278,7 @@ public class Calculator extends JFrame  implements ActionListener {
 	       if(e.getActionCommand().equals("CLEAR")){
 	    	   
 	    	   txtCalc.setText("");
-	    	   result = 0;
+	    	   result = 0.00;
 	    	   calcLine = "";
 	    	   System.out.println("Cleared all variables and GUI!");
 	    	   
