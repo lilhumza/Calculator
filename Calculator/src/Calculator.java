@@ -24,16 +24,16 @@ public class Calculator extends JFrame  implements ActionListener {
 
 	public Calculator() {
 		
-		super("Calculator");
-		setLayout(null);
-		getContentPane().setBackground(Color.lightGray);
+	super("Calculator");
+	setLayout(null);
+	getContentPane().setBackground(Color.lightGray);
 		
-		btn0 = new JButton();
-		btn0.setText("0");
-		btn0.setLocation(0, 150);
-		btn0.setSize(50, 50);
-		btn0.setActionCommand("ZERO");
-		btn0.addActionListener(this);
+	btn0 = new JButton();
+	btn0.setText("0");
+	btn0.setLocation(0, 150);
+	btn0.setSize(50, 50);
+	btn0.setActionCommand("ZERO");
+	btn0.addActionListener(this);
         add(btn0);
         
         btn1 = new JButton();
